@@ -1,0 +1,16 @@
+{
+  "name": "rhmonitor",
+  "version": "1.0.0",
+  "description": "A CLI tool to monitor your RandomHash miners fpr PascalCoin",
+  "main": "rhmonitor.js",
+  "author": "Benjamin Ansbach <benjaminansbach@gmail.com>",
+  "license": "WTFPL",
+  "dependencies": {
+    "cli-color": "^1.4.0",
+    "ini": "^1.3.5",
+    "request": "^2.88.0"
+  },
+  "scripts": {
+    "start": "node rhmonitor.js"
+  }
+}

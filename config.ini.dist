@@ -1,0 +1,47 @@
+; Timeout in seconds for requests to the rhminer software - default is 3 seconds
+; This value can be adjusted for each server. If one server gets a lot of
+; timeouts, extend the servers timeout value.
+timeout = 3
+
+; interval in seconds in which the rhminer gets requested. This value should not
+; be below 10s as rhminer only refreshes its own data every 10s. This value can
+; be adjusted for each server.
+interval = 10
+
+; The default port used for all servers - you can omit this value in each server
+; settings.
+port = 7111
+
+; Screen refresh rate in seconds. If your screen starts to flickr,
+; change to a higher value.
+print = 0.5
+
+; Compact mode, does not display uptime etc.
+compact = false
+
+; If the wallet is accessible via JSON RPC from where rhmonitor runs, rhminer
+; is able to display some wallet information (PASC earned, Accounts, ..)
+;wallet_ip = 127.0.0.1
+;wallet_port = 4003
+; The public key you are mining to.
+;b58_pubkey = 3GhhbosUWjFm8QUiiX6zVSFejTfxMdL3wT9fbVZYUqkoYQq2pYtdckaMnvfPciGJmpaDbfZTgDGLiKCPLxmspvzZVoPzFEvtoF7wnZ
+
+; Servers:
+; One group in [] for each server always starting with "server." [server.SOME_VALUE]
+[servers.miner_1]
+
+; The IP of the miner server
+ip = 192.168.1.8
+
+; the port of the miner server, can be omitted when default.
+;port = 7111;
+
+; the request interval (overwrites the global request interval for this server only)
+;interval = 10
+
+; the timeout for requests (overwrites the global timeout for this server only)
+;timeout = 3
+
+[servers.miner_2]
+ip = 127.0.0.1
+; ...
