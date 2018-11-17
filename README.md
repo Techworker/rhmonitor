@@ -2,6 +2,8 @@
 
 A CLI tool to monitor your PascalCoin RandomHash miners.
 
+![RandomHash monitor](https://raw.githubusercontent.com/Techworker/rhmonitor/master/rhmonitor.png)
+
 ## Installation with nodejs on your system
 
 If you already have nodejs installed on your monitoring computer, you can
