@@ -11,6 +11,7 @@ simply clone the repository, install dependencies and run the script.
 
 ```
 git clone git@github.com:Techworker/rhmonitor.git
+cd rhmonitor
 npm install
 npm start
 ```
@@ -31,6 +32,8 @@ docker run -it --rm \
 
 The monitor comed packaged as executables for windows, macos and linux. Go to
 the releases page to download the file that matches your operation system. 
+
+https://github.com/Techworker/rhmonitor/releases
 
 The executables come pre-packaged with nodejs, so they are rather big. Nothing
 will be installed on your system.

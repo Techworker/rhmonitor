@@ -8,6 +8,9 @@ timeout = 3
 ; be adjusted for each server.
 interval = 10
 
+; the number of items saved to calculate the average speed
+average_lookback = 100
+
 ; The default port used for all servers - you can omit this value in each server
 ; settings.
 port = 7111
