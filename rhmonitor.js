@@ -187,7 +187,6 @@ function doRequest(server, first) {
 function doQueryWallet() {
     if(config.wallet_ip && config.wallet_ip !== '')
     {
-
         const url = `http://${config.wallet_ip}:${config.wallet_port}`;
         const json = {
             jsonrpc: '2.0',
@@ -209,6 +208,25 @@ function doQueryWallet() {
             function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     all.accounts = body.result;
+                }
+            }
+        );
+
+        json.method = 'getblockcount';
+        req.post(url, {json},
+            function (error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    all.block_count = body.result;
+                }
+            }
+        );
+
+        json.method = 'getblocks';
+        json.params.last = "1";
+        req.post(url, {json},
+            function (error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    all.last_block = body.result[0];
                 }
             }
         );
@@ -243,7 +261,9 @@ let all = {
     good: 0,
     bad: 0,
     balance: 0,
-    accounts: 0
+    accounts: 0,
+    block_count: 0,
+    last_block: null
 };
 
 Object.keys(config.servers).forEach((ident) => {
@@ -391,8 +411,8 @@ function print() {
         }
     });
 
-    let header = ' ' + clc.underline('rhmonitor by @techworker') + "\n";
-    header += ' Av: ' + Object.keys(servers).length + '/' + clc.bgGreen.white(all.good) + '/' + clc.bgRed.white(all.bad);
+
+    let header = "\n" + ' Av: ' + Object.keys(servers).length + '/' + clc.bgGreen.white(all.good) + '/' + clc.bgRed.white(all.bad);
     header += ' Thr: ' + all.threads;
     header += ' Sp: ' + all.speed + ' H/s';
     header += ' Acc/Rej: ' + all.accepted + '/' + all.rejected;
@@ -400,7 +420,15 @@ function print() {
     header += ' Acc: ' + all.accounts;
     //process.exit();
     output = header + "\n" + output;
-    output += format("You like what you see? Donate to 3450-25", true, 78);
+    output += format(" Block: " + all.block_count.toString(), false, 20);
+
+    if(all.last_block !== null) {
+        output += format(` Last:  ${all.last_block.block} ${all.last_block.payload} - ${all.last_block.hashratekhs} KH/s`, false, 61) + "\n";
+    }
+
+    output += ' ────────────────────────────────────────────────────────────────────────────────' + "\n";
+    output += " rhmonitor by @techworker";
+    output += format("You like what you see? Donate to 3450-25", true, 56) + "\n";
 
 
     console.log(output);
